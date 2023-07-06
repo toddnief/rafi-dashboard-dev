@@ -9,7 +9,9 @@ import "tailwindcss/tailwind.css";
 import "../styles/styles.css";
 
 export default function ControlPanel() {
-  const snapshot = useSnapshot(state);
+  const snapshot = useSnapshot(state.stateData);
+
+  //TODO: still not totally confident on when to use state vs snapshot and what triggers a reload
 
   if (!snapshot.isDataLoaded) {
     return <div>Loading...</div>;
@@ -20,11 +22,11 @@ export default function ControlPanel() {
 
     // adjust filtered states
     if (checked) {
-      state.filteredStates.push(value);
+      state.stateData.filteredStates.push(value);
     } else {
       const index = state.filteredStates.indexOf(value);
       if (index !== -1) {
-        state.filteredStates.splice(index, 1);
+        state.stateData.filteredStates.splice(index, 1);
       }
     }
 
@@ -32,12 +34,12 @@ export default function ControlPanel() {
   };
 
   const selectAll = () => {
-    state.filteredStates = [...state.allStates];
+    state.stateData.filteredStates = [...state.stateData.allStates];
     updateFilteredData();
   };
 
   const selectNone = () => {
-    state.filteredStates.length = 0;
+    state.stateData.filteredStates.length = 0;
     updateFilteredData();
   };
 

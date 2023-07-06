@@ -19,7 +19,7 @@ function calculateHHI(filteredSales) {
 }
 
 export function SummaryStats() {
-  const snapshot = useSnapshot(state);
+  const snapshot = useSnapshot(state.stateData);
 
   if (!snapshot.isDataLoaded) {
     return <div>Loading...</div>;

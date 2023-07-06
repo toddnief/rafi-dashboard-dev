@@ -9,7 +9,7 @@ import { Chart, ArcElement } from "chart.js";
 Chart.register(ArcElement);
 
 export default function PieChart() {
-  const snapshot = useSnapshot(state);
+  const snapshot = useSnapshot(state.stateData);
 
   if (!snapshot.isDataLoaded) {
     return <div>Loading...</div>;

@@ -69,10 +69,14 @@ function calculateZoom() {
 
 export function DeckGLMap() {
   // Get a snapshot of the current state
-  const snapshot = useSnapshot(state);
+  const { stateData, stateMapSettings } = useSnapshot(state);
+
+  // console.log(useSnapshot(state));
+
+  // console.log(dataSnap);
 
   // Don't render the component until the data is loaded
-  if (!snapshot.isDataLoaded) {
+  if (!stateData.isDataLoaded) {
     return <div>Loading...</div>;
   }
 
@@ -80,7 +84,7 @@ export function DeckGLMap() {
 
   const plantAccessLayer = new GeoJsonLayer({
     // data: snapshot.stateAccessShapes,
-    data: snapshot.filteredCaptureAreas,
+    data: stateData.filteredCaptureAreas,
 
     pickable: true,
     // TODO: maybe add tooltip back
@@ -104,7 +108,7 @@ export function DeckGLMap() {
 
   const farmLayer = new IconLayer({
     id: "icon-layer",
-    data: snapshot.counterglowFarms.features,
+    data: stateData.counterglowFarms.features,
     pickable: true,
     iconAtlas:
       "https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/icon-atlas.png",
@@ -119,11 +123,9 @@ export function DeckGLMap() {
     getColor: (d) => colorPalette.farm,
   });
 
-  console.log(snapshot.poultryPlants.features[0].properties["Full Address"]);
-
   const plantLayer = new IconLayer({
     id: "icon-layer",
-    data: snapshot.poultryPlants.features,
+    data: stateData.poultryPlants.features,
     iconAtlas:
       "https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/icon-atlas.png",
     iconMapping: {
@@ -141,7 +143,7 @@ export function DeckGLMap() {
 
   const deck = (
     <DeckGL
-      initialViewState={snapshot.mapZoom}
+      initialViewState={stateMapSettings.mapZoom}
       controller={true}
       layers={[plantAccessLayer, plantLayer, farmLayer]}
       pickingRadius={200} //TODO: is this right?
