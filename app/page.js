@@ -31,7 +31,14 @@ export default function Home() {
     <div>
       <h1>Please Show a Map</h1>
       {/* <div className={styles["map-container"]}> */}
-      <div style={{ height: "1000px", width: "100%", display: "flex" }}>
+      <div
+        style={{
+          minHeight: "600px",
+          height: "calc(100vh - 600px)",
+          width: "100%",
+          display: "flex",
+        }}
+      >
         <div style={{ position: "relative", flex: "3" }}>
           <Tooltip />
           <DeckGLMap />

@@ -17,6 +17,7 @@ import tinycolor from "tinycolor2";
 const MAPBOX_ACCESS_TOKEN =
   "pk.eyJ1IjoidG9kZG5pZWYiLCJhIjoiY2xncGpwZnRtMHR0aTNxcDlkN3FzY3h0eiJ9.dGj0-yOWwF05hS7qeb_SVw";
 
+//TODO: This is wrong and needs to be updated to return the correct object
 const plantColorPalette = (() => {
   const plantAccessColors = colorbrewer.Set3[4];
   const plantAccess = ["One Plant", "Two Plants", "Three Plants", "4+ Plants"];
@@ -147,6 +148,21 @@ export function DeckGLMap() {
         mapStyle="mapbox://styles/mapbox/dark-v9"
         mapboxAccessToken={MAPBOX_ACCESS_TOKEN}
       />
+      <div id="legend">
+        {Object.entries(plantColorPalette).map(([key, color]) => (
+          <div key={key}>
+            <div
+              className="swatch"
+              style={{
+                background: `rgb(${color.slice(0, 3).join(",")},${
+                  color[3] / 255
+                })`,
+              }}
+            ></div>
+            <div className="label">{key}</div>
+          </div>
+        ))}
+      </div>
     </DeckGL>
   );
 
