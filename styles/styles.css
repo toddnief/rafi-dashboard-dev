@@ -1,0 +1,8 @@
+.checkbox-label {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-label .mr-2 {
+    margin-right: 0.5rem;
+}
