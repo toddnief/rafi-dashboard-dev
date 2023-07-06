@@ -96,6 +96,14 @@
         "async": false
       }
     },
+    "(app-client)/./components/Tooltip.js": {
+      "*": {
+        "id": "(sc_client)/./components/Tooltip.js",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
     "(app-client)/./lib/data.js": {
       "*": {
         "id": "(sc_client)/./lib/data.js",
@@ -309,6 +317,14 @@
     },
     "/Users/toddnief/Library/CloudStorage/Dropbox/1-Projects/dsi/rafi-poultry/todds-rafi-dashboard/components/SummaryStats.js": {
       "id": "(app-client)/./components/SummaryStats.js",
+      "name": "*",
+      "chunks": [
+        "app/page:static/chunks/app/page.js"
+      ],
+      "async": false
+    },
+    "/Users/toddnief/Library/CloudStorage/Dropbox/1-Projects/dsi/rafi-poultry/todds-rafi-dashboard/components/Tooltip.js": {
+      "id": "(app-client)/./components/Tooltip.js",
       "name": "*",
       "chunks": [
         "app/page:static/chunks/app/page.js"

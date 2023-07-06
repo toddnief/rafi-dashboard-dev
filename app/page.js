@@ -9,8 +9,10 @@ import { DeckGLMap } from "../components/DeckGLMap";
 import { SummaryStats } from "../components/SummaryStats";
 import ControlPanel from "../components/ControlPanel";
 import PieChart from "../components/PieChart";
+import Tooltip from "../components/Tooltip";
 
 import "mapbox-gl/dist/mapbox-gl.css";
+import "../styles/styles.css";
 // import styles from "./page.module.css"; //TODO: unsure about styles import
 
 export default function Home() {
@@ -31,6 +33,7 @@ export default function Home() {
       {/* <div className={styles["map-container"]}> */}
       <div style={{ height: "1000px", width: "100%", display: "flex" }}>
         <div style={{ position: "relative", flex: "3" }}>
+          <Tooltip />
           <DeckGLMap />
         </div>
         <div style={{ flex: "1" }}>

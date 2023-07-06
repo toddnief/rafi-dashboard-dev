@@ -15,8 +15,8 @@ export default function PieChart() {
     return <div>Loading...</div>;
   }
 
-  console.log("Object.keys(snapshot.filteredSales)");
-  console.log(Object.keys(snapshot.filteredSales));
+  // console.log("Object.keys(snapshot.filteredSales)");
+  // console.log(Object.keys(snapshot.filteredSales));
 
   const chartData = {
     labels: Object.keys(snapshot.filteredSales),

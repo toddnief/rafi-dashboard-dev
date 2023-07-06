@@ -139,3 +139,6 @@ venv.bak/
 # data files
 *.avro
 data/*
+
+# Next.js files
+.next/

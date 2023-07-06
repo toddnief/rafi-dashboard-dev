@@ -71,19 +71,12 @@ export function DeckGLMap() {
   // Get a snapshot of the current state
   const { stateData, stateMapSettings } = useSnapshot(state);
 
-  // console.log(useSnapshot(state));
-
-  // console.log(dataSnap);
-
   // Don't render the component until the data is loaded
   if (!stateData.isDataLoaded) {
     return <div>Loading...</div>;
   }
 
-  // console.log(snapshot.poultryPlants)
-
   const plantAccessLayer = new GeoJsonLayer({
-    // data: snapshot.stateAccessShapes,
     data: stateData.filteredCaptureAreas,
 
     pickable: true,
@@ -103,8 +96,6 @@ export function DeckGLMap() {
       }
     },
   });
-
-  // console.log(counterglowFarms)
 
   const farmLayer = new IconLayer({
     id: "icon-layer",
@@ -138,7 +129,11 @@ export function DeckGLMap() {
     getTooltip: (d) => `Address: ${d.properties["Full Address"]}`,
 
     pickable: true,
-    // onHover: onHoverPlant
+    onHover: ({ x, y, object }) => {
+      state.stateMapSettings.x = x;
+      state.stateMapSettings.y = y;
+      state.stateMapSettings.hoveredObject = object;
+    },
   });
 
   const deck = (
@@ -146,7 +141,7 @@ export function DeckGLMap() {
       initialViewState={stateMapSettings.mapZoom}
       controller={true}
       layers={[plantAccessLayer, plantLayer, farmLayer]}
-      pickingRadius={200} //TODO: is this right?
+      pickingRadius={50} //TODO: This behaves strangely and only works when zoomed out?
     >
       <Map
         mapStyle="mapbox://styles/mapbox/dark-v9"
