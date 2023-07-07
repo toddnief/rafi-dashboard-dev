@@ -20,21 +20,37 @@ export default function Tooltip() {
 
     console.log(snapshot.hoveredObject);
 
-    return (
-      <div className="tooltip" style={tooltipStyle}>
-        <div>
-          <b>{snapshot.hoveredObject.properties["Establishment Name"]}</b>
+    // console.log(snapshot.hoveredObject);
+    if ("plant_access" in snapshot.hoveredObject.properties) {
+      // TODO: Set this up to log corporation access
+      if (snapshot.hoveredObject.properties.plant_access == 1) {
+        return (
+          <div className="tooltip" style={tooltipStyle}>
+            <div>
+              <b>Plant Access: 1</b>
+            </div>
+          </div>
+        );
+      } else {
+        return "";
+      }
+    } else {
+      return (
+        <div className="tooltip" style={tooltipStyle}>
+          <div>
+            <b>{snapshot.hoveredObject.properties["Establishment Name"]}</b>
+          </div>
+          <div>
+            <b>{snapshot.hoveredObject.properties["Full Address"]}</b>
+          </div>
+          <div>
+            <b>
+              Parent Corporation:{" "}
+              {snapshot.hoveredObject.properties["Parent Corporation"]}
+            </b>
+          </div>
         </div>
-        <div>
-          <b>{snapshot.hoveredObject.properties["Full Address"]}</b>
-        </div>
-        <div>
-          <b>
-            Parent Corporation:{" "}
-            {snapshot.hoveredObject.properties["Parent Corporation"]}
-          </b>
-        </div>
-      </div>
-    );
+      );
+    }
   }
 }

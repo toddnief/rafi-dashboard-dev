@@ -45,7 +45,6 @@ const markerPalette = {
 const colorPalette = Object.assign({}, plantColorPalette, markerPalette);
 
 export function DeckGLMap() {
-  // Get a snapshot of the current state
   const { stateData, stateMapSettings } = useSnapshot(state);
 
   // Don't render the component until the data is loaded
@@ -58,7 +57,11 @@ export function DeckGLMap() {
 
     pickable: true,
     // TODO: add tooltip back
-    // onHover: onHoverPlantAccess,
+    onHover: ({ x, y, object }) => {
+      state.stateMapSettings.x = x;
+      state.stateMapSettings.y = y;
+      state.stateMapSettings.hoveredObject = object;
+    },
 
     getFillColor: function (dataRow) {
       switch (dataRow.properties.plant_access) {
