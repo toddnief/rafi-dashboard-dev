@@ -11,7 +11,6 @@ import { Map } from "react-map-gl";
 
 import colorbrewer from "colorbrewer";
 import tinycolor from "tinycolor2";
-// import bbox from "@turf/bbox";
 
 // Set your mapbox access token here
 const MAPBOX_ACCESS_TOKEN =

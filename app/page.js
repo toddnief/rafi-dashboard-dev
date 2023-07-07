@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { proxy, useSnapshot } from "valtio";
 
 import { loadData } from "../lib/data";
@@ -23,9 +23,26 @@ export default function Home() {
 
   const snapshot = useSnapshot(state);
 
-  // if (!snapshot.isDataLoaded) {
-  //   return <div>Loading...</div>
-  // }
+  // Handling resizing of container to dynamically update map bounding box
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (containerRef.current) {
+        const width = containerRef.current.getBoundingClientRect().width;
+        const height = containerRef.current.getBoundingClientRect().height;
+        state.stateMapSettings.containerWidth = width;
+        state.stateMapSettings.containerHeight = height;
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <div>
@@ -39,7 +56,7 @@ export default function Home() {
           display: "flex",
         }}
       >
-        <div style={{ position: "relative", flex: "3" }}>
+        <div style={{ position: "relative", flex: "3" }} ref={containerRef}>
           <Tooltip />
           <DeckGLMap />
         </div>

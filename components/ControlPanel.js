@@ -24,7 +24,7 @@ export default function ControlPanel() {
     if (checked) {
       state.stateData.filteredStates.push(value);
     } else {
-      const index = state.filteredStates.indexOf(value);
+      const index = state.stateData.filteredStates.indexOf(value);
       if (index !== -1) {
         state.stateData.filteredStates.splice(index, 1);
       }
