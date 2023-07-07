@@ -12,30 +12,28 @@ import { Map } from "react-map-gl";
 import colorbrewer from "colorbrewer";
 import tinycolor from "tinycolor2";
 
-// Set your mapbox access token here
+// TODO: put this in .env
 const MAPBOX_ACCESS_TOKEN =
   "pk.eyJ1IjoidG9kZG5pZWYiLCJhIjoiY2xncGpwZnRtMHR0aTNxcDlkN3FzY3h0eiJ9.dGj0-yOWwF05hS7qeb_SVw";
 
-//TODO: This is wrong and needs to be updated to return the correct object
-const plantColorPalette = (() => {
-  const plantAccessColors = colorbrewer.Set3[4];
-  const plantAccess = ["One Plant", "Two Plants", "Three Plants", "4+ Plants"];
+// TODO: How should I make an object in this kind of context?
+const plantAccessColors = colorbrewer.Set3[4];
+const plantAccess = ["One Plant", "Two Plants", "Three Plants", "4+ Plants"];
 
-  const hexPalette = Object.fromEntries(
-    plantAccess.map((access, i) => [access, plantAccessColors[i]])
-  );
-  const rgbPalette = Object.entries(hexPalette).map(([key, hex]) => {
-    return [key, Object.values(tinycolor(hex).toRgb())];
-  });
+const hexPalette = Object.fromEntries(
+  plantAccess.map((access, i) => [access, plantAccessColors[i]])
+);
+const rgbPalette = Object.entries(hexPalette).map(([key, hex]) => {
+  return [key, Object.values(tinycolor(hex).toRgb())];
+});
 
-  for (let key in rgbPalette) {
-    let rgb = rgbPalette[key][1];
-    rgb[3] = 255;
-    rgbPalette[key][1] = rgb;
-  }
+for (let key in rgbPalette) {
+  let rgb = rgbPalette[key][1];
+  rgb[3] = 255;
+  rgbPalette[key][1] = rgb;
+}
 
-  return Object.fromEntries(rgbPalette);
-})();
+const plantColorPalette = Object.fromEntries(rgbPalette);
 
 const markerPalette = {
   farm: [220, 220, 220, 255],
@@ -43,29 +41,9 @@ const markerPalette = {
   default: [140, 140, 140, 255],
 };
 
-const colorPalette = (() => {
-  // return Object.assign(plantColorPalette, corpColorPalette, markerPalette)
-  return Object.assign(plantColorPalette, markerPalette);
-})();
+// TODO: Add corporation palette — need to decide how many to actually color at once
 
-// TODO: I'm unsure how to set this up so that it gets the size of the container that this is contained in
-function calculateZoom() {
-  const currentGeojson = {
-    type: "FeatureCollection",
-    features: state.filteredCaptureAreas,
-  };
-  let bbox = bbox(currentGeojson);
-  let width = container.getBoundingClientRect().width;
-  let height = container.getBoundingClientRect().height;
-  let fittedViewport = new deck.WebMercatorViewport({ width, height });
-  let currentLatLonZoom = fittedViewport.fitBounds(
-    [
-      [bbox[0], bbox[1]],
-      [bbox[2], bbox[3]],
-    ],
-    { width, height }
-  );
-}
+const colorPalette = Object.assign({}, plantColorPalette, markerPalette);
 
 export function DeckGLMap() {
   // Get a snapshot of the current state
@@ -80,7 +58,7 @@ export function DeckGLMap() {
     data: stateData.filteredCaptureAreas,
 
     pickable: true,
-    // TODO: maybe add tooltip back
+    // TODO: add tooltip back
     // onHover: onHoverPlantAccess,
 
     getFillColor: function (dataRow) {
@@ -107,7 +85,7 @@ export function DeckGLMap() {
       marker: { x: 0, y: 0, width: 128, height: 128, mask: true },
     },
 
-    //TODO: Make farms less chaotic
+    // TODO: Make farms less chaotic
     getIcon: (d) => "marker",
     getPosition: (d) => d.geometry.coordinates,
     getSize: (d) => 10,
@@ -136,11 +114,17 @@ export function DeckGLMap() {
     },
   });
 
+  var displayLayers = [plantAccessLayer, plantLayer];
+
+  if (stateMapSettings.displayFarms) {
+    displayLayers.push(farmLayer);
+  }
+
   const deck = (
     <DeckGL
-      initialViewState={stateMapSettings.mapZoom}
+      initialViewState={stateMapSettings.mapZoom} // TODO: is there a way to have an initial state and still dynamically update the view?
       controller={true}
-      layers={[plantAccessLayer, plantLayer, farmLayer]}
+      layers={displayLayers}
       pickingRadius={50} //TODO: This behaves strangely and only works when zoomed out?
     >
       <Map

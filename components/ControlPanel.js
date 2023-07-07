@@ -43,6 +43,10 @@ export default function ControlPanel() {
     updateFilteredData();
   };
 
+  const updateFarmDisplay = () => {
+    state.stateMapSettings.displayFarms = !state.stateMapSettings.displayFarms;
+  };
+
   return (
     <div className="w-full max-w-xs mx-auto">
       {snapshot.allStates.map((option, index) => (
@@ -57,8 +61,15 @@ export default function ControlPanel() {
           />
         </label>
       ))}
-      <button onClick={selectAll}>Select All</button>
-      <button onClick={selectNone}>Select None</button>
+      <div>
+        <button onClick={selectAll}>Select All</button>
+      </div>
+      <div>
+        <button onClick={selectNone}>Select None</button>
+      </div>
+      <div>
+        <button onClick={updateFarmDisplay}>Change Farm Display</button>
+      </div>
     </div>
   );
 }
