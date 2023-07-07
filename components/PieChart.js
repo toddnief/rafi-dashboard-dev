@@ -15,14 +15,12 @@ export default function PieChart() {
     return <div>Loading...</div>;
   }
 
-  // console.log("Object.keys(snapshot.filteredSales)");
-  // console.log(Object.keys(snapshot.filteredSales));
-
   const chartData = {
     labels: Object.keys(snapshot.filteredSales),
+    // TODO: need to standardize the colors used
     datasets: [
       {
-        data: Object.values(snapshot.filteredSales),
+        data: Object.values(snapshot.filteredSales).map((item) => item.sales),
         backgroundColor: [
           "rgba(255, 99, 132, 0.6)",
           "rgba(54, 162, 235, 0.6)",
@@ -39,13 +37,9 @@ export default function PieChart() {
       data={chartData}
       options={{
         responsive: true,
+        // TODO: this legend isn't working?
         legend: {
           display: true,
-          // position: 'top', // you can change this to 'top', 'left', 'bottom'
-          // labels: {
-          //     fontColor: '#333', // set your desired color
-          //     // you can add more label styling options here
-          // },
         },
       }}
     />
