@@ -38,7 +38,8 @@ export function SummaryStats() {
         "No data available"
       )}
       <div>
-        {snapshot.filteredSales ? (
+        {snapshot.filteredSales &&
+        Object.keys(snapshot.filteredSales).length > 0 ? (
           <table>
             <thead>
               <tr>
@@ -62,7 +63,7 @@ export function SummaryStats() {
             </tbody>
           </table>
         ) : (
-          "No data available"
+          ""
         )}
       </div>
     </div>

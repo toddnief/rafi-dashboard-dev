@@ -11,7 +11,7 @@ export default function Tooltip() {
   if (typeof snapshot.hoveredObject === "undefined") {
     return "";
   } else {
-    const tooltipStyle = {
+    const tooltipPosition = {
       position: "absolute",
       top: `${snapshot.y}px`,
       left: `${snapshot.x}px`,
@@ -25,7 +25,7 @@ export default function Tooltip() {
       // TODO: Set this up to log corporation access
       if (snapshot.hoveredObject.properties.plant_access == 1) {
         return (
-          <div className="tooltip" style={tooltipStyle}>
+          <div className="tooltip" style={tooltipPosition}>
             <div>
               <b>Plant Access: 1</b>
             </div>
@@ -36,7 +36,7 @@ export default function Tooltip() {
       }
     } else {
       return (
-        <div className="tooltip" style={tooltipStyle}>
+        <div className="tooltip" style={tooltipPosition}>
           <div>
             <b>{snapshot.hoveredObject.properties["Establishment Name"]}</b>
           </div>
