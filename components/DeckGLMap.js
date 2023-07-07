@@ -12,9 +12,8 @@ import { Map } from "react-map-gl";
 import colorbrewer from "colorbrewer";
 import tinycolor from "tinycolor2";
 
-// TODO: put this in .env
-const MAPBOX_ACCESS_TOKEN =
-  "pk.eyJ1IjoidG9kZG5pZWYiLCJhIjoiY2xncGpwZnRtMHR0aTNxcDlkN3FzY3h0eiJ9.dGj0-yOWwF05hS7qeb_SVw";
+// TODO: Is it ok load this client side? Seems like maybe it is for Mapbox?
+const MAPBOX_ACCESS_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
 // TODO: How should I make an object in this kind of context?
 const plantAccessColors = colorbrewer.Set3[4];
