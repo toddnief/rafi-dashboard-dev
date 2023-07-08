@@ -18,9 +18,8 @@ export default function Tooltip() {
       // Additional styles for the tooltip
     };
 
-    console.log(snapshot.hoveredObject);
-
     // console.log(snapshot.hoveredObject);
+
     if ("plant_access" in snapshot.hoveredObject.properties) {
       // TODO: Set this up to log corporation access
       if (snapshot.hoveredObject.properties.plant_access == 1) {

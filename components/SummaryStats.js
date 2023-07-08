@@ -30,8 +30,6 @@ export function SummaryStats() {
     return <div>Loading...</div>;
   }
 
-  console.log(snapshot.filteredSales);
-
   const calculatedHHI = calculateHHI(snapshot.filteredSales);
 
   return (
