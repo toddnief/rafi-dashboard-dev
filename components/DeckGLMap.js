@@ -135,7 +135,7 @@ export function DeckGLMap() {
       />
       <div id="legend">
         {Object.entries(plantColorPalette).map(([key, color]) => (
-          <div key={key}>
+          <div key={key} style={{ display: "flex" }}>
             <div
               className="swatch"
               style={{
