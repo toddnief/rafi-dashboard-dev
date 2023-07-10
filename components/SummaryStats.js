@@ -67,11 +67,11 @@ export function SummaryStats() {
       ) : (
         "No data available"
       )}
-      <div>
+      <div className="max-h-[75%] overflow-y-auto">
         {snapshot.filteredCaptureAreas &&
         Object.keys(snapshot.filteredCaptureAreas).length > 0 ? (
-          <table>
-            <thead>
+          <table className="table table-sm">
+            <thead className="sticky">
               <tr>
                 <th>Percent of Area With Plant Access</th>
               </tr>
@@ -89,10 +89,10 @@ export function SummaryStats() {
           ""
         )}
       </div>
-      <div>
+      <div className="max-h-[50vh] overflow-y-auto">
         {snapshot.filteredSales &&
         Object.keys(snapshot.filteredSales).length > 0 ? (
-          <table>
+          <table className="table table-sm">
             <thead>
               <tr>
                 <th>Company</th>

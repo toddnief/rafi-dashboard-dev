@@ -5,11 +5,12 @@ import { useSnapshot } from "valtio";
 
 import { state, updateFilteredData } from "../lib/state";
 
-import "tailwindcss/tailwind.css";
-import "../styles/styles.css";
+// import "tailwindcss/tailwind.css";
+// import "../styles/styles.css";
 
 export default function ControlPanel() {
   const snapshot = useSnapshot(state.stateData);
+  const [expanded, setExpanded] = useState(true);
 
   //TODO: still not totally confident on when to use state vs snapshot and what triggers a reload
 
@@ -49,27 +50,55 @@ export default function ControlPanel() {
 
   return (
     <div className="w-full max-w-xs mx-auto">
-      {snapshot.allStates.map((option, index) => (
-        <label key={index} className="block mt-4 checkbox-label">
-          <span className="text-gray-700">{option}</span>
-          <input
-            className="mt-1 block w-full rounded-md bg-gray-100 border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-500"
-            value={option}
-            type="checkbox"
-            checked={snapshot.filteredStates.includes(option)}
-            onChange={handleCheckboxChange}
-          />
-        </label>
-      ))}
-      <div>
-        <button onClick={selectAll}>Select All</button>
+      <p>Select States</p>
+      <button
+        className="btn btn-sm normal-case"
+        onClick={() => setExpanded((e) => !e)}
+      >
+        {expanded ? "Collapse Menu" : "Show Menu"}
+      </button>
+      <div
+        className={`form-control h-0 overflow-hidden ${
+          expanded && "h-auto overflow-auto max-h-full"
+        }`}
+      >
+        <div className="divider"></div>
+        <div className="join">
+          <button
+            className="btn join-item btn-sm normal-case"
+            onClick={selectAll}
+          >
+            All
+          </button>
+          <button
+            className="btn join-item btn-sm normal-case"
+            onClick={selectNone}
+          >
+            None
+          </button>
+        </div>
+        {snapshot.allStates.map((option, index) => (
+          <label key={index} className="label cursor-pointer py-1">
+            <span className="block label-text">{option}</span>
+            <input
+              className="checkbox checkbox-xs block"
+              value={option}
+              type="checkbox"
+              checked={snapshot.filteredStates.includes(option)}
+              onChange={handleCheckboxChange}
+            />
+          </label>
+        ))}
+      </div>
+      {/* <div>
+        <button >Select All</button>
       </div>
       <div>
-        <button onClick={selectNone}>Select None</button>
-      </div>
-      <div>
+        <button >Select None</button>
+      </div> */}
+      {/* <div>
         <button onClick={updateFarmDisplay}>Change Farm Display</button>
-      </div>
+      </div> */}
     </div>
   );
 }

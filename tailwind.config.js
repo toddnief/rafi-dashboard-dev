@@ -1,3 +1,4 @@
 module.exports = {
-    plugins: [require("daisyui")],
-  }
+  content: ['./{app,components}/**/*.{js,ts,jsx,tsx,mdx}'],
+  plugins: [require('daisyui')],
+};
