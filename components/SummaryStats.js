@@ -31,8 +31,9 @@ function calculateCapturedArea(filteredAreas) {
     4: 0,
   };
 
+  // TODO: Need to add area to GeoJSON
   for (let i = 0; i < filteredAreas.length; i++) {
-    areas[filteredAreas[i].properties.plant_access] +=
+    areas[filteredAreas[i].properties.corporate_access] +=
       filteredAreas[i].properties.area;
   }
 
@@ -44,14 +45,6 @@ function calculateCapturedArea(filteredAreas) {
   });
 
   return percentArea;
-
-  // debugger;
-
-  // let areasTable = Object.entries(percentArea).map(
-  //   ([plantAccess, percentArea]) => ({ plantAccess, percentArea })
-  // );
-
-  // return areasTable;
 }
 
 export function SummaryStats() {

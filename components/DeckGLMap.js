@@ -17,7 +17,12 @@ const MAPBOX_ACCESS_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
 // TODO: How should I make an object in this kind of context?
 const plantAccessColors = colorbrewer.Set3[4];
-const plantAccess = ["One Plant", "Two Plants", "Three Plants", "4+ Plants"];
+const plantAccess = [
+  "One Corporation",
+  "Two Corporations",
+  "Three Corporations",
+  "4+ Corporations",
+];
 
 const hexPalette = Object.fromEntries(
   plantAccess.map((access, i) => [access, plantAccessColors[i]])
@@ -64,15 +69,27 @@ export function DeckGLMap() {
     },
 
     getFillColor: function (dataRow) {
-      switch (dataRow.properties.plant_access) {
+      // switch (dataRow.properties.plant_access) {
+      //   switch (dataRow.properties.corporate_access) {
+      //     case 1:
+      //       return colorPalette["One Plant"];
+      //     case 2:
+      //       return colorPalette["Two Plants"];
+      //     case 3:
+      //       return colorPalette["Three Plants"];
+      //     case 4:
+      //       return colorPalette["4+ Plants"];
+      //   }
+      // },
+      switch (dataRow.properties.corporate_access) {
         case 1:
-          return colorPalette["One Plant"];
+          return colorPalette["One Corporation"];
         case 2:
-          return colorPalette["Two Plants"];
+          return colorPalette["Two Corporations"];
         case 3:
-          return colorPalette["Three Plants"];
+          return colorPalette["Three Corporations"];
         case 4:
-          return colorPalette["4+ Plants"];
+          return colorPalette["4+ Corporations"];
       }
     },
   });

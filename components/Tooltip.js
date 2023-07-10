@@ -20,13 +20,16 @@ export default function Tooltip() {
 
     // console.log(snapshot.hoveredObject);
 
-    if ("plant_access" in snapshot.hoveredObject.properties) {
+    if ("corporate_access" in snapshot.hoveredObject.properties) {
       // TODO: Set this up to log corporation access
-      if (snapshot.hoveredObject.properties.plant_access == 1) {
+      if (snapshot.hoveredObject.properties.corporate_access == 1) {
         return (
           <div className="tooltip" style={tooltipPosition}>
             <div>
-              <b>Plant Access: 1</b>
+              <b>
+                Corporation Access:{" "}
+                {snapshot.hoveredObject.properties["parent_corporation"]}
+              </b>
             </div>
           </div>
         );
