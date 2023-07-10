@@ -23,6 +23,37 @@ function calculateHHI(filteredSales) {
   }
 }
 
+function calculateCapturedArea(filteredAreas) {
+  let areas = {
+    1: 0,
+    2: 0,
+    3: 0,
+    4: 0,
+  };
+
+  for (let i = 0; i < filteredAreas.length; i++) {
+    areas[filteredAreas[i].properties.plant_access] +=
+      filteredAreas[i].properties.area;
+  }
+
+  let totalArea = Object.values(areas).reduce((acc, val) => acc + val, 0);
+
+  let percentArea = {};
+  Object.keys(areas).forEach((key) => {
+    percentArea[key] = areas[key] / totalArea;
+  });
+
+  return percentArea;
+
+  // debugger;
+
+  // let areasTable = Object.entries(percentArea).map(
+  //   ([plantAccess, percentArea]) => ({ plantAccess, percentArea })
+  // );
+
+  // return areasTable;
+}
+
 export function SummaryStats() {
   const snapshot = useSnapshot(state.stateData);
 
@@ -31,6 +62,7 @@ export function SummaryStats() {
   }
 
   const calculatedHHI = calculateHHI(snapshot.filteredSales);
+  const capturedAreas = calculateCapturedArea(snapshot.filteredCaptureAreas);
 
   return (
     <div>
@@ -42,6 +74,28 @@ export function SummaryStats() {
       ) : (
         "No data available"
       )}
+      <div>
+        {snapshot.filteredCaptureAreas &&
+        Object.keys(snapshot.filteredCaptureAreas).length > 0 ? (
+          <table>
+            <thead>
+              <tr>
+                <th>Percent of Area With Plant Access</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.entries(capturedAreas).map(([key, item]) => (
+                <tr key={key}>
+                  <td>{key}</td>
+                  <td>{(item * 100).toFixed(1) + "%"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          ""
+        )}
+      </div>
       <div>
         {snapshot.filteredSales &&
         Object.keys(snapshot.filteredSales).length > 0 ? (

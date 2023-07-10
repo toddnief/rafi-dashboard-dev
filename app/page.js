@@ -60,10 +60,10 @@ export default function Home() {
           <Tooltip />
           <DeckGLMap />
         </div>
-        <div style={{ flex: "1" }}>
+        <div style={{ flex: ".5" }}>
           <ControlPanel />
         </div>
-        <div style={{ flex: "1" }}>
+        <div style={{ flex: "1.5" }}>
           <div style={{ position: "relative", height: "25%" }}>
             <PieChart />
           </div>
