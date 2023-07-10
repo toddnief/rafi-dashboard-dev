@@ -18,7 +18,7 @@ export default function PieChart() {
         cleanedChartLabels: [],
       };
     }
-    
+
     const data = Object.entries(snapshot.filteredSales);
     const top4 = data.slice(0, 3);
     const labels = top4.map(([key, value]) => key);
@@ -61,9 +61,9 @@ export default function PieChart() {
       data={chartData}
       options={{
         responsive: true,
-        // TODO: this legend isn't working?
         legend: {
           display: true,
+          position: "bottom",
         },
       }}
     />

@@ -67,7 +67,7 @@ export function SummaryStats() {
       ) : (
         "No data available"
       )}
-      <div className="max-h-[75%] overflow-y-auto">
+      {/* <div className="max-h-[75%] overflow-y-auto">
         {snapshot.filteredCaptureAreas &&
         Object.keys(snapshot.filteredCaptureAreas).length > 0 ? (
           <table className="table table-sm">
@@ -88,7 +88,7 @@ export function SummaryStats() {
         ) : (
           ""
         )}
-      </div>
+      </div> */}
       <div className="max-h-[50vh] overflow-y-auto">
         {snapshot.filteredSales &&
         Object.keys(snapshot.filteredSales).length > 0 ? (
