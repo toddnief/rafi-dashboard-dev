@@ -64,7 +64,7 @@ export function SummaryStats() {
           <h2 className="text-2xl font-bold text-center">
             HHI for Selected States
           </h2>
-          <p className="text-center">{calculatedHHI.toFixed(0)}</p>
+          <p className="text-center text-xl">{calculatedHHI.toFixed(0)}</p>
         </div>
       ) : (
         "No data available"

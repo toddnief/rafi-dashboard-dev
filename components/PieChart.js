@@ -56,7 +56,7 @@ export default function PieChart() {
     ],
   };
 
-  return (
+  return snapshot.filteredCaptureAreas.length ? (
     <Pie
       data={chartData}
       options={{
@@ -69,5 +69,7 @@ export default function PieChart() {
         },
       }}
     />
+  ) : (
+    ""
   );
 }
