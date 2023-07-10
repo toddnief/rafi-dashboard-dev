@@ -1,26 +1,50 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useSnapshot } from "valtio";
 
 import { state } from "../lib/state";
 
 import { Pie } from "react-chartjs-2";
-import { Chart, ArcElement } from "chart.js";
-Chart.register(ArcElement);
+import { Chart, ArcElement, Legend, Tooltip } from "chart.js";
+Chart.register(ArcElement, Legend, Tooltip);
 
 export default function PieChart() {
   const snapshot = useSnapshot(state.stateData);
+
+  const { cleanedChartData, cleanedChartLabels } = useMemo(() => {
+    if (!snapshot.isDataLoaded) {
+      return {
+        cleanedChartData: [],
+        cleanedChartLabels: [],
+      };
+    }
+    
+    const data = Object.entries(snapshot.filteredSales);
+    const top4 = data.slice(0, 3);
+    const labels = top4.map(([key, value]) => key);
+    const values = top4.map(([key, value]) => value.sales);
+
+    const remaining = data
+      .slice(3)
+      .map(([key, value]) => value.sales)
+      .reduce((a, b) => a + b, 0);
+
+    return {
+      cleanedChartData: [...values, remaining],
+      cleanedChartLabels: [...labels, "Other"],
+    };
+  }, [snapshot.filteredSales]);
 
   if (!snapshot.isDataLoaded) {
     return <div>Loading...</div>;
   }
 
   const chartData = {
-    labels: Object.keys(snapshot.filteredSales),
+    labels: cleanedChartLabels,
     // TODO: need to standardize the colors used
     datasets: [
       {
-        data: Object.values(snapshot.filteredSales).map((item) => item.sales),
+        data: cleanedChartData,
         backgroundColor: [
           "rgba(255, 99, 132, 0.6)",
           "rgba(54, 162, 235, 0.6)",
