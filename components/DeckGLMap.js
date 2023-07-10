@@ -11,6 +11,7 @@ import { Map } from "react-map-gl";
 
 import colorbrewer from "colorbrewer";
 import tinycolor from "tinycolor2";
+import { ScatterplotLayer } from "deck.gl";
 
 // TODO: Is it ok load this client side? Seems like maybe it is for Mapbox?
 const MAPBOX_ACCESS_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
@@ -133,7 +134,30 @@ export function DeckGLMap() {
     },
   });
 
-  var displayLayers = [plantAccessLayer, plantLayer];
+  const plantInteractiveLayer = new ScatterplotLayer({
+    id: "scatterplot-layer",
+    data: stateData.poultryPlants.features,
+    pickable: true,
+    // todo: remove stroke after sizing is fixed
+    stroked: true,
+    filled: true,
+    // todo: radius currently scales on zoom in a weird way
+    // swap to meters or different scaling
+    radiusScale: 6,
+    radiusMinPixels: 1,
+    radiusMaxPixels: 100,
+    lineWidthMinPixels: 1,
+    getPosition: (d) => d.geometry.coordinates,
+    getRadius: (d) => 10,
+    getFillColor: [0,0,0,0],
+    onHover: ({ x, y, object }) => {
+      state.stateMapSettings.x = x;
+      state.stateMapSettings.y = y;
+      state.stateMapSettings.hoveredObject = object;
+    }
+  })
+
+  var displayLayers = [plantAccessLayer, plantInteractiveLayer, plantLayer];
 
   if (stateMapSettings.displayFarms) {
     displayLayers.push(farmLayer);
