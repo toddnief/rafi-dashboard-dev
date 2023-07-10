@@ -61,9 +61,11 @@ export default function PieChart() {
       data={chartData}
       options={{
         responsive: true,
-        legend: {
-          display: true,
-          position: "bottom",
+        plugins: {
+          legend: {
+            display: true,
+            position: "bottom",
+          },
         },
       }}
     />

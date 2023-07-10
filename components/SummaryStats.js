@@ -60,9 +60,11 @@ export function SummaryStats() {
   return (
     <div>
       {calculatedHHI ? (
-        <div>
-          <h2>HHI for Selected States</h2>
-          <p>{calculatedHHI.toFixed(0)}</p>
+        <div className="m-2">
+          <h2 className="text-2xl font-bold text-center">
+            HHI for Selected States
+          </h2>
+          <p className="text-center">{calculatedHHI.toFixed(0)}</p>
         </div>
       ) : (
         "No data available"
