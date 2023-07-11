@@ -149,13 +149,13 @@ export function DeckGLMap() {
     lineWidthMinPixels: 1,
     getPosition: (d) => d.geometry.coordinates,
     getRadius: (d) => 10,
-    getFillColor: [0,0,0,0],
+    getFillColor: [0, 0, 0, 0],
     onHover: ({ x, y, object }) => {
       state.stateMapSettings.x = x;
       state.stateMapSettings.y = y;
       state.stateMapSettings.hoveredObject = object;
-    }
-  })
+    },
+  });
 
   var displayLayers = [plantAccessLayer, plantInteractiveLayer, plantLayer];
 
@@ -178,14 +178,14 @@ export function DeckGLMap() {
         {Object.entries(plantColorPalette).map(([key, color]) => (
           <div key={key} style={{ display: "flex" }}>
             <div
-              className="swatch"
+              className="swatch align-middle"
               style={{
                 background: `rgb(${color.slice(0, 3).join(",")},${
                   color[3] / 255
                 })`,
               }}
             ></div>
-            <div className="label">{key}</div>
+            <div className="label align-middle">{key}</div>
           </div>
         ))}
       </div>

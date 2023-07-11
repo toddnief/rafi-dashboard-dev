@@ -50,20 +50,23 @@ export default function ControlPanel() {
 
   return (
     <div className="w-full max-w-xs mx-auto">
-      <p>Select States</p>
-      <button
-        className="btn btn-sm normal-case"
-        onClick={() => setExpanded((e) => !e)}
-      >
-        {expanded ? "Collapse Menu" : "Show Menu"}
-      </button>
+      <p className="text-center">Select States</p>
+      {/* //TODO: why isn't this justify working? */}
+      <div className="flex justify-center">
+        <button
+          className="btn btn-sm normal-case"
+          onClick={() => setExpanded((e) => !e)}
+        >
+          {expanded ? "Collapse Menu" : "Show Menu"}
+        </button>
+      </div>
       <div
         className={`form-control h-0 overflow-hidden ${
           expanded && "h-auto overflow-auto max-h-full"
         }`}
       >
-        <div className="divider"></div>
-        <div className="join">
+        <div className="divider m-0"></div>
+        <div className="join justify-center">
           <button
             className="btn join-item btn-sm normal-case"
             onClick={selectAll}
