@@ -46,10 +46,9 @@ export default function Home() {
 
   return (
     <div>
-      {/* <h1>Please Show a Map</h1> */}
-      {/* <div className={styles["map-container"]}> */}
       <main className="flex w-full h-[100vh] relative">
-        {/* <button className="btn">Button</button> */}
+        {/* <h1>Please Show a Map</h1> */}
+        {/* <div className={styles["map-container"]}> */}
         <div style={{ position: "relative", flex: "3" }} ref={containerRef}>
           <Tooltip />
           <DeckGLMap />
@@ -57,7 +56,10 @@ export default function Home() {
         <div className="absolute left-4 top-4 bg-white p-2">
           <ControlPanel />
         </div>
-        <div className="flex flex-col h-[100vh] overflow-hidden" style={{ flex: "1.5" }}>
+        <div
+          className="flex flex-col h-[100vh] overflow-hidden"
+          style={{ flex: "1.5" }}
+        >
           <div className="flex flex-row justify-center h-[25vh]">
             <PieChart />
           </div>
