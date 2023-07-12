@@ -22,7 +22,7 @@ export default function PieChart() {
     const data = Object.entries(snapshot.filteredSales);
     const top4 = data.slice(0, 3);
     const labels = top4.map(([key, value]) => key);
-    const values = top4.map(([key, value]) => (value.percent * 100).toFixed(1));
+    const values = top4.map(([key, value]) => value.percent * 100);
 
     const remaining = data
       .slice(3)
@@ -65,6 +65,16 @@ export default function PieChart() {
           legend: {
             display: true,
             position: "bottom",
+          },
+          tooltip: {
+            callbacks: {
+              label: function (context) {
+                console.log(context);
+                const value = context.dataset.data[context.dataIndex];
+                console.log("Tooltip value:", value); // this will log the value
+                return context.label + ": " + value.toFixed(1) + "%";
+              },
+            },
           },
         },
       }}
