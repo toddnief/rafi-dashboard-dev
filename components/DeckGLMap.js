@@ -44,7 +44,7 @@ const plantColorPalette = Object.fromEntries(rgbPalette);
 
 const markerPalette = {
   farm: [220, 220, 220, 255],
-  plant: [255, 255, 255, 255],
+  plant: [240, 240, 240, 255],
   default: [140, 140, 140, 255],
 };
 
@@ -64,7 +64,6 @@ export function DeckGLMap() {
     data: stateData.filteredCaptureAreas,
 
     pickable: true,
-    // TODO: add tooltip back
     onHover: ({ x, y, object }) => {
       state.stateMapSettings.x = x;
       state.stateMapSettings.y = y;
@@ -117,6 +116,7 @@ export function DeckGLMap() {
 
   const plantLayer = new IconLayer({
     id: "icon-layer",
+    stroked: true,
     data: stateData.poultryPlants.features,
     iconAtlas:
       "https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/icon-atlas.png",
@@ -127,6 +127,7 @@ export function DeckGLMap() {
     getPosition: (d) => d.geometry.coordinates,
     getSize: 35,
     getColor: colorPalette.plant,
+    getLineColor: (d) => [0, 0, 0, 255], // TODO: I want these to be outlined buy maybe there's a transparent border?
     getTooltip: (d) => `Address: ${d.properties["Full Address"]}`,
 
     pickable: true,
