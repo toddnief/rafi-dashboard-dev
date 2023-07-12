@@ -52,11 +52,13 @@ export default function Home() {
         {/* <div className={styles["map-container"]}> */}
         {/* <div style={{ position: "relative", flex: "3" }} ref={containerRef}> */}
         <div className="relative w-3/4" ref={containerRef}>
-          <Tooltip />
-          <DeckGLMap />
-        </div>
-        <div className="absolute left-4 top-4 bg-white p-2">
-          <ControlPanel />
+          <div>
+            <Tooltip />
+            <DeckGLMap />
+          </div>
+          <div className="absolute left-4 top-4 bg-white p-2">
+            <ControlPanel />
+          </div>
         </div>
         <div className="flex flex-col w-1/4 h-[100vh] overflow-hidden">
           <div className="flex flex-row justify-center h-[25vh]">
