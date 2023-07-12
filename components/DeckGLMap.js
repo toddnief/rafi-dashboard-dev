@@ -7,6 +7,8 @@ import { state } from "../lib/state";
 
 import DeckGL from "@deck.gl/react";
 import { LineLayer, IconLayer, GeoJsonLayer } from "@deck.gl/layers";
+import { COORDINATE_SYSTEM } from "@deck.gl/core";
+
 import { Map } from "react-map-gl";
 
 import colorbrewer from "colorbrewer";
@@ -70,6 +72,7 @@ export function DeckGLMap() {
     },
 
     getFillColor: function (dataRow) {
+      // TODO: available if we want to switch back to plants
       // switch (dataRow.properties.plant_access) {
       //   switch (dataRow.properties.corporate_access) {
       //     case 1:
@@ -138,17 +141,14 @@ export function DeckGLMap() {
     id: "scatterplot-layer",
     data: stateData.poultryPlants.features,
     pickable: true,
-    // todo: remove stroke after sizing is fixed
-    stroked: true,
-    filled: true,
-    // todo: radius currently scales on zoom in a weird way
-    // swap to meters or different scaling
+    // stroked: true,
+    filled: true, // will be filled with empty
     radiusScale: 6,
-    radiusMinPixels: 1,
+    radiusMinPixels: 15, // should be about the same size as the marker
     radiusMaxPixels: 100,
     lineWidthMinPixels: 1,
     getPosition: (d) => d.geometry.coordinates,
-    getRadius: (d) => 10,
+    getRadius: (d) => 100,
     getFillColor: [0, 0, 0, 0],
     onHover: ({ x, y, object }) => {
       state.stateMapSettings.x = x;

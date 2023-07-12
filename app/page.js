@@ -45,7 +45,7 @@ export default function Home() {
   }, []);
 
   return (
-    // this works
+    // this doesn't break deskdtop but doesn't work right on mobile
     <div>
       <main className="flex w-full flex-col sm:flex-row h-[2000px] sm:h-[100vh] relative flex">
         {/* <h1>Please Show a Map</h1> */}
@@ -70,27 +70,5 @@ export default function Home() {
         </div>
       </main>
     </div>
-
-    //   <div>
-    //     <main className="flex flex-col sm:flex-row w-full h-[100vh] relative flex">
-    //       <div className="relative w-full sm:w-3/4">
-    //         <div className="w-full" ref={containerRef}>
-    //           <Tooltip />
-    //           <DeckGLMap />
-    //         </div>
-    //         <div className="absolute left-4 top-4 bg-white p-2">
-    //           <ControlPanel />
-    //         </div>
-    //       </div>
-    //       <div className="flex flex-col sm:w-1/4 h-[100vh] overflow-hidden">
-    //         <div className="flex flex-row justify-center h-[25vh]">
-    //           <PieChart />
-    //         </div>
-    //         <div>
-    //           <SummaryStats />
-    //         </div>
-    //       </div>
-    //     </main>
-    //   </div>
   );
 }
