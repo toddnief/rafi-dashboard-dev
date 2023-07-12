@@ -176,16 +176,16 @@ export function DeckGLMap() {
       />
       <div id="legend">
         {Object.entries(plantColorPalette).map(([key, color]) => (
-          <div key={key} style={{ display: "flex" }}>
+          <div key={key} className="flex items-center">
             <div
-              className="swatch align-middle"
+              className="swatch"
               style={{
                 background: `rgb(${color.slice(0, 3).join(",")},${
                   color[3] / 255
                 })`,
               }}
             ></div>
-            <div className="label align-middle">{key}</div>
+            <div className="label">{key}</div>
           </div>
         ))}
       </div>

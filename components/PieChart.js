@@ -22,11 +22,11 @@ export default function PieChart() {
     const data = Object.entries(snapshot.filteredSales);
     const top4 = data.slice(0, 3);
     const labels = top4.map(([key, value]) => key);
-    const values = top4.map(([key, value]) => value.sales);
+    const values = top4.map(([key, value]) => (value.percent * 100).toFixed(1));
 
     const remaining = data
       .slice(3)
-      .map(([key, value]) => value.sales)
+      .map(([key, value]) => value.percent)
       .reduce((a, b) => a + b, 0);
 
     return {
