@@ -67,35 +67,37 @@ export function SummaryStats() {
           <p className="text-center text-xl">{calculatedHHI.toFixed(0)}</p>
         </div>
       ) : (
-        "No data available"
+        <p className="text-center">No data available</p>
       )}
-      {/* <div className="max-h-[75%] overflow-y-auto">
-        {snapshot.filteredCaptureAreas &&
-        Object.keys(snapshot.filteredCaptureAreas).length > 0 ? (
-          <table className="table table-sm">
-            <thead className="sticky">
-              <tr>
-                <th>Percent of Area With Plant Access</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Object.entries(capturedAreas).map(([key, item]) => (
-                <tr key={key}>
-                  <td>{key}</td>
-                  <td>{(item * 100).toFixed(1) + "%"}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        ) : (
-          ""
-        )}
-      </div> */}
+      {snapshot.filteredCaptureAreas &&
+      Object.keys(snapshot.filteredCaptureAreas).length > 0 ? (
+        <div className="max-h-[75%] overflow-y-auto">
+          <div className="flex justify-center">
+            <div>
+              <table className="table table-sm inline-block">
+                <thead>
+                  <th>Access to Corporations in Selected Area</th>
+                </thead>
+                <tbody>
+                  {Object.entries(capturedAreas).map(([key, item]) => (
+                    <tr key={key}>
+                      <td>{key}</td>
+                      <td>{(item * 100).toFixed(1) + "%"}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
       <div className="max-h-[50vh] overflow-y-auto">
         {snapshot.filteredSales &&
         Object.keys(snapshot.filteredSales).length > 0 ? (
           <table className="table table-sm">
-            <thead>
+            <thead className="sticky">
               <tr>
                 <th>Company</th>
                 <th>Sales</th>
