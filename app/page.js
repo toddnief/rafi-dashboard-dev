@@ -47,7 +47,7 @@ export default function Home() {
   return (
     // this works
     <div>
-      <main className="flex w-full flex-col sm:flex-row h-[100vh] relative flex">
+      <main className="flex w-full flex-col sm:flex-row h-[2000px] sm:h-[100vh] relative flex">
         {/* <h1>Please Show a Map</h1> */}
         {/* <div className={styles["map-container"]}> */}
         {/* <div style={{ position: "relative", flex: "3" }} ref={containerRef}> */}
