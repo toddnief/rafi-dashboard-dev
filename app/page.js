@@ -45,20 +45,17 @@ export default function Home() {
   }, []);
 
   return (
-    // this doesn't break deskdtop but doesn't work right on mobile
     <div>
-      <main className="flex w-full flex-col sm:flex-row h-[2000px] sm:h-[100vh] relative flex">
+      <main className="flex w-full h-[100vh] relative flex">
         {/* <h1>Please Show a Map</h1> */}
         {/* <div className={styles["map-container"]}> */}
         {/* <div style={{ position: "relative", flex: "3" }} ref={containerRef}> */}
         <div className="relative w-3/4" ref={containerRef}>
-          <div>
-            <Tooltip />
-            <DeckGLMap />
-          </div>
-          <div className="absolute left-4 top-4 bg-white p-2">
-            <ControlPanel />
-          </div>
+          <Tooltip />
+          <DeckGLMap />
+        </div>
+        <div className="absolute left-4 top-4 bg-white p-2">
+          <ControlPanel />
         </div>
         <div className="flex flex-col w-1/4 h-[100vh] overflow-hidden">
           <div className="flex flex-row justify-center h-[25vh]">
