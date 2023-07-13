@@ -51,7 +51,6 @@ export default function ControlPanel() {
   return (
     <div className="w-full max-w-xs mx-auto">
       <p className="text-center">Select States</p>
-      {/* //TODO: why isn't this justify working? */}
       <div className="flex justify-center">
         <button
           className="btn btn-sm normal-case"

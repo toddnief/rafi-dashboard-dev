@@ -51,7 +51,7 @@ export function SummaryStats() {
   const snapshot = useSnapshot(state.stateData);
 
   if (!snapshot.isDataLoaded) {
-    return <div>Loading...</div>;
+    return "";
   }
 
   const calculatedHHI = calculateHHI(snapshot.filteredSales);

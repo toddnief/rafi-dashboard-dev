@@ -36,7 +36,7 @@ export default function PieChart() {
   }, [snapshot.filteredSales]);
 
   if (!snapshot.isDataLoaded) {
-    return <div>Loading...</div>;
+    return "";
   }
 
   const chartData = {

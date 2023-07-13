@@ -19,7 +19,7 @@ import { ScatterplotLayer } from "deck.gl";
 const MAPBOX_ACCESS_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
 // TODO: How should I make an object in this kind of context?
-const plantAccessColors = colorbrewer.Set3[4];
+const plantAccessColors = colorbrewer.Set3[4].reverse();
 const plantAccess = [
   "One Corporation",
   "Two Corporations",
@@ -42,13 +42,13 @@ for (let key in rgbPalette) {
 
 const plantColorPalette = Object.fromEntries(rgbPalette);
 
+// debugger;
+
 const markerPalette = {
   farm: [220, 220, 220, 255],
   plant: [240, 240, 240, 255],
   default: [140, 140, 140, 255],
 };
-
-// TODO: Add corporation palette — need to decide how many to actually color at once
 
 const colorPalette = Object.assign({}, plantColorPalette, markerPalette);
 
@@ -57,7 +57,7 @@ export function DeckGLMap() {
 
   // Don't render the component until the data is loaded
   if (!stateData.isDataLoaded) {
-    return <div>Loading...</div>;
+    return "";
   }
 
   const plantAccessLayer = new GeoJsonLayer({
