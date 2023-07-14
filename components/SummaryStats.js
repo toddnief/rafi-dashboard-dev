@@ -23,29 +23,31 @@ function calculateHHI(filteredSales) {
   }
 }
 
-function calculateCapturedArea(filteredAreas) {
-  let areas = {
-    1: 0,
-    2: 0,
-    3: 0,
-    // 4: 0,
-  };
+// TODO: This was moved to the global state
+// function calculateCapturedArea(filteredAreas) {
+//   let areas = {
+//     1: 0,
+//     2: 0,
+//     3: 0,
+//     // 4: 0,
+//   };
 
-  // TODO: Need to add area to GeoJSON
-  for (let i = 0; i < filteredAreas.length; i++) {
-    areas[filteredAreas[i].properties.corporate_access] +=
-      filteredAreas[i].properties.area;
-  }
+//   // TODO: Need to add area to GeoJSON
+//   for (let i = 0; i < filteredAreas.length; i++) {
+//     areas[filteredAreas[i].properties.corporate_access] +=
+//       filteredAreas[i].properties.area;
+//   }
 
-  let totalArea = Object.values(areas).reduce((acc, val) => acc + val, 0);
+//   let totalArea = Object.values(areas).reduce((acc, val) => acc + val, 0);
 
-  let percentArea = {};
-  Object.keys(areas).forEach((key) => {
-    percentArea[key] = areas[key] / totalArea;
-  });
+//   let percentArea = {};
+//   Object.keys(areas).forEach((key) => {
+//     percentArea[key] = areas[key] / totalArea;
+//   });
 
-  return percentArea;
-}
+//   // return percentArea;
+//   state.stateData.capturedAreas = percentArea;
+// }
 
 export function SummaryStats() {
   const snapshot = useSnapshot(state.stateData);
@@ -55,7 +57,12 @@ export function SummaryStats() {
   }
 
   const calculatedHHI = calculateHHI(snapshot.filteredSales);
-  const capturedAreas = calculateCapturedArea(snapshot.filteredCaptureAreas);
+  // TODO: This was moved to the global state
+  // calculateCapturedArea(snapshot.filteredCaptureAreas);
+  // state.stateData.capturedAreas = calculateCapturedArea(
+  //   snapshot.filteredCaptureAreas
+  // );
+  // const capturedAreas = calculateCapturedArea(snapshot.filteredCaptureAreas);
 
   return (
     <div>
@@ -76,10 +83,10 @@ export function SummaryStats() {
             <div>
               <table className="table table-sm inline-block">
                 <thead>
-                  <th>Access to Corporations in Selected Area</th>
+                  <th>Access to Integrators in Selected Area</th>
                 </thead>
                 <tbody>
-                  {Object.entries(capturedAreas).map(([key, item]) => (
+                  {Object.entries(snapshot.capturedAreas).map(([key, item]) => (
                     <tr key={key}>
                       <td>{key}</td>
                       <td>{(item * 100).toFixed(1) + "%"}</td>

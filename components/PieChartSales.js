@@ -19,21 +19,19 @@ export default function PieChart() {
       };
     }
 
-    // const data = Object.entries(snapshot.filteredSales);
-    const data = Object.entries(snapshot.capturedAreas);
+    const data = Object.entries(snapshot.filteredSales);
     const top4 = data.slice(0, 3);
     const labels = top4.map(([key, value]) => key);
-    const values = top4.map(([key, value]) => value * 100);
+    const values = top4.map(([key, value]) => value.percent * 100);
 
     const remaining = data
       .slice(3)
-      .map(([key, value]) => value)
+      .map(([key, value]) => value.percent)
       .reduce((a, b) => a + b, 0);
 
     return {
       cleanedChartData: [...values, remaining],
-      cleanedChartLabels: [...labels],
-      //   cleanedChartLabels: [...labels, "Other"],
+      cleanedChartLabels: [...labels, "Other"],
     };
   }, [snapshot.filteredSales]);
 
@@ -48,12 +46,11 @@ export default function PieChart() {
       {
         data: cleanedChartData,
         backgroundColor: [
-          "rgba(251, 128, 114, 0.6)",
-          "rgba(255, 255, 179, 0.6)",
-          "rgba(141, 211, 150, 0.6)",
-          //   "One Corporation": [251, 128, 114, 150],
-          //   "Two Corporations": [255, 255, 179, 150],
-          //   "3+ Corporations": [141, 211, 199, 150],
+          "rgba(255, 99, 132, 0.6)",
+          "rgba(54, 162, 235, 0.6)",
+          "rgba(255, 206, 86, 0.6)",
+          "rgba(75, 192, 192, 0.6)",
+          // Add more colors as needed
         ],
       },
     ],
