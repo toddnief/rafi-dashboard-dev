@@ -105,13 +105,13 @@ export function DeckGLMap() {
       // },
       switch (dataRow.properties.corporate_access) {
         case 1:
-          return colorPalette["One Corporation"];
+          return colorPalette["One Integrator"];
         case 2:
-          return colorPalette["Two Corporations"];
+          return colorPalette["Two Integrators"];
         case 3:
-          return colorPalette["3+ Corporations"];
+          return colorPalette["3+ Integrators"];
         case 4:
-          return colorPalette["4+ Corporations"];
+          return colorPalette["4+ Integrators"];
       }
     },
   });
