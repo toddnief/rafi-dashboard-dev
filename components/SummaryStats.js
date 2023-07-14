@@ -28,7 +28,7 @@ function calculateCapturedArea(filteredAreas) {
     1: 0,
     2: 0,
     3: 0,
-    4: 0,
+    // 4: 0,
   };
 
   // TODO: Need to add area to GeoJSON
