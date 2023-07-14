@@ -61,6 +61,7 @@ export default function PieChart() {
       data={chartData}
       options={{
         responsive: true,
+        maintainAspectRatio: false, // prevent resizing issue
         plugins: {
           legend: {
             display: true,
