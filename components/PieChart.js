@@ -32,7 +32,8 @@ export default function PieChart() {
 
     return {
       cleanedChartData: [...values, remaining],
-      cleanedChartLabels: [...labels],
+      cleanedChartLabels: ["1 Integrator", "2 Integrators", "3+ Integrators"],
+      //   cleanedChartLabels: [...labels],
       //   cleanedChartLabels: [...labels, "Other"],
     };
   }, [snapshot.filteredSales]);

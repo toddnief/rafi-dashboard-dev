@@ -44,9 +44,9 @@ const MAPBOX_ACCESS_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 // const plantColorPalette = Object.fromEntries(rgbPalette);
 
 const plantColorPalette = {
-  "One Corporation": [251, 128, 114, 150],
-  "Two Corporations": [255, 255, 179, 150],
-  "3+ Corporations": [141, 211, 199, 150],
+  "One Integrator": [251, 128, 114, 150],
+  "Two Integrators": [255, 255, 179, 150],
+  "3+ Integrators": [141, 211, 199, 150],
 };
 
 const markerPalette = {
