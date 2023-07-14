@@ -18,31 +18,36 @@ import { ScatterplotLayer } from "deck.gl";
 // TODO: Is it ok load this client side? Seems like maybe it is for Mapbox?
 const MAPBOX_ACCESS_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
-// TODO: How should I make an object in this kind of context?
-const plantAccessColors = colorbrewer.Set3[4].reverse();
-const plantAccess = [
-  "One Corporation",
-  "Two Corporations",
-  "Three Corporations",
-  "4+ Corporations",
-];
+// TODO: maybe functionalize this later but just hard-coding this short term
+// const plantAccessColors = colorbrewer.Set3[4].reverse();
+// const plantAccess = [
+//   "One Corporation",
+//   "Two Corporations",
+//   "Three Corporations",
+//   "4+ Corporations",
+// ];
 
-const hexPalette = Object.fromEntries(
-  plantAccess.map((access, i) => [access, plantAccessColors[i]])
-);
-const rgbPalette = Object.entries(hexPalette).map(([key, hex]) => {
-  return [key, Object.values(tinycolor(hex).toRgb())];
-});
+// const hexPalette = Object.fromEntries(
+//   plantAccess.map((access, i) => [access, plantAccessColors[i]])
+// );
+// const rgbPalette = Object.entries(hexPalette).map(([key, hex]) => {
+//   return [key, Object.values(tinycolor(hex).toRgb())];
+// });
 
-for (let key in rgbPalette) {
-  let rgb = rgbPalette[key][1];
-  rgb[3] = 255;
-  rgbPalette[key][1] = rgb;
-}
+// for (let key in rgbPalette) {
+//   let rgb = rgbPalette[key][1];
+//   rgb[3] = 255;
+//   rgbPalette[key][1] = rgb;
+//   print(rgb);
+// }
 
-const plantColorPalette = Object.fromEntries(rgbPalette);
+// const plantColorPalette = Object.fromEntries(rgbPalette);
 
-// debugger;
+const plantColorPalette = {
+  "One Corporation": [251, 128, 114, 255],
+  "Two Corporations": [255, 255, 179, 255],
+  "3+ Corporations": [141, 211, 199, 255],
+};
 
 const markerPalette = {
   farm: [220, 220, 220, 255],
@@ -51,6 +56,20 @@ const markerPalette = {
 };
 
 const colorPalette = Object.assign({}, plantColorPalette, markerPalette);
+
+// 4+ Corporations
+// :
+// (4) [141, 211, 199, 255] // green
+// One Corporation
+// :
+// (4) [251, 128, 114, 255] //red
+// Three Corporations
+// :
+// (4) [255, 255, 179, 255]
+// Two Corporations:
+// (4) [190, 186, 218, 255] // yellow
+
+// console.log(colorPalette);
 
 export function DeckGLMap() {
   const { stateData, stateMapSettings } = useSnapshot(state);
@@ -90,7 +109,7 @@ export function DeckGLMap() {
         case 2:
           return colorPalette["Two Corporations"];
         case 3:
-          return colorPalette["Three Corporations"];
+          return colorPalette["3+ Corporations"];
         case 4:
           return colorPalette["4+ Corporations"];
       }
