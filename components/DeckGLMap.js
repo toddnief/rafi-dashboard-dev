@@ -191,7 +191,7 @@ export function DeckGLMap() {
       pickingRadius={50} //TODO: This behaves strangely and only works when zoomed out?
     >
       <Map
-        mapStyle="mapbox://styles/mapbox/dark-v9"
+        mapStyle="mapbox://styles/mapbox/satellite-v9"
         mapboxAccessToken={MAPBOX_ACCESS_TOKEN}
       />
       <div id="legend">

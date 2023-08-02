@@ -92,15 +92,15 @@ export default function ControlPanel() {
           </label>
         ))}
       </div>
-      {/* <div>
-        <button >Select All</button>
+      <div>
+        <button>Select All</button>
       </div>
       <div>
-        <button >Select None</button>
-      </div> */}
-      {/* <div>
+        <button>Select None</button>
+      </div>
+      <div>
         <button onClick={updateFarmDisplay}>Change Farm Display</button>
-      </div> */}
+      </div>
     </div>
   );
 }
