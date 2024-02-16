@@ -13,6 +13,7 @@
     "@deck.gl/react": "^8.9.19",
     "@mapbox/tiny-sdf": "^2.0.6",
     "@turf/bbox": "^6.5.0",
+    "@turf/turf": "^6.5.0",
     "chart.js": "^4.3.0",
     "colorbrewer": "^1.5.3",
     "deck.gl": "^8.9.19",
